@@ -72,6 +72,7 @@ display: none;
     background-color:#916F58;
     height: 200px;
     width: 350px;
+    padding: 10px;
     font-size: 30px;
     border: 2px solid #c29650;
     border-radius: 30px;
@@ -645,6 +646,9 @@ color:#DC7A5D;
     cursor: pointer;
     height: 40px;
 }
+.likeRed{
+fill: red;
+}
 
 .likeNumber{
     font-weight: bold;
@@ -860,4 +864,3 @@ color:#DC7A5D;
         width: 400px;
      }
 }
-

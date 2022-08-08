@@ -53,30 +53,42 @@ export const loginActive = (idElementoForm) => {
     e.preventDefault();
     const email = document.getElementById('emailLogin').value;
     const password = document.getElementById('passwordLogin').value;
+    const warning= document.getElementById('warningLogin');
+    const cerrar= document.getElementById('cerrarLogin');
+    const warningText = document.getElementById('warningTextLogin');
+    cerrar.addEventListener('click', ()=>{
+      warning.style.display='none';
+    });
     // aqui se puede colocar el método del firebase
     loginUser(email, password)
       .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      // const emailVerified = user.emailVerified;
       const uid = user.uid;
-      getUserById(uid, 'users').then((userData) => {
-        const data = userData;
-        data.id = uid;
-        localStorage.setItem('USER', JSON.stringify(userData));
-      });
-
+      if (!user.emailVerified) {
+        warning.style.display='flex';
+        cerrar.style.display='flex';
+        warningText.innerText='Revisa tu correo y valida tu cuenta para ingresar';
+        }
+       else {
+        window.location.hash = '#/home';
+        getUserById(uid, 'users').then((userData) => {
+          const data = userData;
+          console.log(uid);
+          data.id = uid;
+          localStorage.setItem('USER', JSON.stringify(userData));
+        });
         console.log(email, password);
-        window.location.href = '#/home';
-      // ...
+      }
       })
+
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        const warning= document.getElementById('warningLogin');
-        const cerrar= document.getElementById('cerrarLogin');
-        const warningText = document.getElementById('warningTextLogin');
         const errorMessage1='Firebase: Error (auth/user-not-found).';
         const errorMessage2= 'Firebase: Error (auth/wrong-password).';
+        
         if (errorMessage === errorMessage1) {
           warning.style.display='flex';
           cerrar.style.display='flex';
@@ -94,27 +106,23 @@ export const loginActive = (idElementoForm) => {
           cerrar.style.display='flex';
           warningText.innerText='El correo ya está en uso';
         }
+
         if (errorCode === 'auth/too-many-requests.') {
           warning.style.display='flex';
           cerrar.style.display='flex';
           warningText.innerText='Demasiados intentos de inicio de sesión. Intentalo más tarde';
         }
-        
-        cerrar.addEventListener('click', ()=>{
-          warning.style.display='none';
-        });
-
-        // {alert(error)}
         idForm.reset();
       });
   });
 };
 
-
 export const buttonShow = (idbtn, idInput) => {
   const password = document.getElementById(idInput);
   const viewPassword = document.getElementById(idbtn);
   let click = false;
+
+  console.log("login -->", viewPassword);
 
   viewPassword.addEventListener('click', () => {
     if (!click) {

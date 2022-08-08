@@ -60,8 +60,10 @@ describe('Ingreso a la red social', () => {
 describe('Mostar y ocultar contraseña', () => {
     it('Icono de ojo que muestra y oculta la contraseña', () => {
         document.body.appendChild(viewLogin());
-        viewLogin();
+       // viewLogin();
+       //console.log("here --->", btnShow());
         const btnShow = buttonShow();
+        
         const password = btnShow.querySelector('#passwordLogin');
         const btnPassword = btnShow.querySelector('#btn-password-login');
         password.type = 'text';
@@ -70,7 +72,6 @@ describe('Mostar y ocultar contraseña', () => {
         // expect(password.type).toBe('text');
     });
 });
-
 
         //})
         //expect(getByTestId('emailLogin')).toBeRequired();
@@ -90,3 +91,4 @@ describe('Mostar y ocultar contraseña', () => {
 //         console.log(signInWithEmailAndPassword.mock);
 //     });
 // });*/
+

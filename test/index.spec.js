@@ -1,9 +1,8 @@
+import viewLogin from '../src/pageview/login.js'
 import { createUser, loginUser } from '../src/firebase/firebaseAuth.js';
 import { createUserRegisterDB, savePost } from '../src/firebase/baseDatos.js'
-
 jest.mock('../src/firebase/firebaseAuth.js');
 jest.mock('../src/firebase/baseDatos.js');
-
 
 describe('Registrar usuario', () => {
   it('debería ser una función', () => {

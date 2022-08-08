@@ -9,6 +9,7 @@ import {
   signInWithPopup,
   signOut,
   onAuthStateChanged,
+  sendEmailVerification,
 } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-auth.js';
 
 import { getFirestore, 
@@ -60,11 +61,9 @@ onAuthStateChanged(auth, (user) => {
     //getName(uid);
   } else {
     // User is signed out
-    // ...
     console.log('No hay un usuario');
   }
 });
-//const user = auth.currentUser;
 
 export {
   createUserWithEmailAndPassword,
@@ -73,6 +72,7 @@ export {
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
+  sendEmailVerification,
 };
 
 export { getFirestore, 

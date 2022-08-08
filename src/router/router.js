@@ -30,7 +30,7 @@ const changeView = async (name) => {
       }
 
     case '#/home':
-      if (user) {
+//       if (user) {
         {
           container.appendChild(components.home());
           SignOutActive('signOut');
@@ -41,9 +41,9 @@ const changeView = async (name) => {
         break;
       }
 
-    default:
+/*     default:
       break;
-  }
+  } */
 };
 
 export { changeView };

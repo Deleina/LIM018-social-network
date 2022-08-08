@@ -11,8 +11,6 @@ import {
 } from '../firebase/baseDatos.js';
 import { imageUrl } from '../firebase/storage.js';
 import { localStorageCall } from '../lib/index.js';
-// import { likeCounter } from '../lib/index.js';
-
 
 export default () => {
     const viewHome = `<section class= "sectionHome">
@@ -96,7 +94,6 @@ export default () => {
         </div>
     
         <div id="containerDelete"></div>
-        <div id= "containerEmpty"></div>
         <div class="postAddBtn">
             <button type="button" class= "addPost" id="btnModalPost" >Agrega una publicación:</button>
             <div id="postContainer"></div>
@@ -111,6 +108,7 @@ export default () => {
     return divElem;
 };
 
+// FUMCIÓN CERRAR SESIÓN
 export const SignOutActive = (idElementSignOut) => {
     const idBtnSignOut = document.getElementById(idElementSignOut);
     idBtnSignOut.addEventListener('click', () => {
@@ -128,6 +126,7 @@ export const SignOutActive = (idElementSignOut) => {
     });
 };
 
+//FUNCIÓN GUARDADO DE DATOS PARA POST
 let editingPost = false;
 let id = '';
 export const postHome = (idPost, formPost, idBtnModalPost, idBackgroundModal, idCerrarModalPost, idBtnPost, idModalTitle, idTextEmptyModal, idBtnImgFile) => {
@@ -152,7 +151,6 @@ export const postHome = (idPost, formPost, idBtnModalPost, idBackgroundModal, id
         userNamePost.innerText = nameUser;
     })
 
-    // btnPost.disabled = false;
     const PostH = document.getElementById(formPost);
     PostH.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -198,15 +196,15 @@ export const postHome = (idPost, formPost, idBtnModalPost, idBackgroundModal, id
 
 };
 
-
-export const getP = async (idpostContainer, idAddPost) => {
+export const getP = async (idpostContainer, idAddPost,) => {
     const textArea = document.getElementById(idAddPost);
+    // const btnImgFile = document.getElementById(idBtnImgFile);
     const postContainer = document.getElementById(idpostContainer);
     onGetPost((dataPost) => {
        postContainer.innerHTML = '';
        dataPost.forEach((doc) => {
             const dataNewPost = doc.data();
-            const dataUid = doc.data().uid;
+            // const dataUid = doc.data().uid;
             const like = dataNewPost.like;
             let ultimoLike = 0;
             if (like){
@@ -235,7 +233,7 @@ export const getP = async (idpostContainer, idAddPost) => {
                 <div class="likeComment">
                     <div class="likeContainer">
                         <button class= "likeBtn">
-                            <img class="likeIcon" src="image/likeHeart.png" data-id="${doc.id}">
+                        <img class="likeIcon" src="image/likeHeart.png" data-id="${doc.id}">
                         </button>
                         <label id="likeNumber" class="likeNumber">${ultimoLike}</label>
                     </div>
@@ -277,21 +275,22 @@ export const getP = async (idpostContainer, idAddPost) => {
 
             }
         })
+
+        //FUNCION BORRAR POST
         const dots = document.querySelectorAll('.dots');
         const optionSetingsPost = document.querySelectorAll('.optionSetingsPost');
-
         const deleteBtn = document.querySelectorAll('.deleteBtn');
         deletingPost(dots, optionSetingsPost, deleteBtn);
-
+        //FUNCION EDITAR TEXTO DE POST
         const editBtn = document.querySelectorAll('.editBtn');
         editingP(editBtn, optionSetingsPost, textArea)
 
+        //FUNCION LIKES
         const likeAction = document.querySelectorAll('.likeBtn');
         const likeNumber = document.querySelectorAll('.likeNumber');
-        //likeCounter(likeAction, likeNumber);
+        const likeIcon = document.querySelectorAll('.likeIcon');
         
         for (let i = 0; i < likeAction.length; i++) {
-            //console.log(likeAction[i]);
             likeAction[i].addEventListener('click', async ({ target: { dataset } }) => {
                 const doc = await gettingPostLike(dataset.id);
                 const post = doc.data();
@@ -313,23 +312,22 @@ export const getP = async (idpostContainer, idAddPost) => {
                         delete likeobject[newNum];
                         contador = true;
                     }
-                }
-
-                if (contador == false) {
-                    likeobject[num] = uidLike;
+                 }
+                 if(contador == false){
+                    likeobject[num]=uidLike;
                 }
 
                 addLike(id, likeobject);
                 console.log(likeobject);
-            });
+             });
 
-        }
-    });
+            function getKeyByValue(object, value) {
+                return Object.keys(object).find(key => object[key] === value);
+            }
+       }
+   });
 }
 
-function getKeyByValue(object, value) {
-    return Object.keys(object).find(key => object[key] === value);
-}
 
 function deletingPost(dots, optionSetingsPost, deleteBtn) {
     for (let i = 0; i < dots.length; i++) {
@@ -389,7 +387,6 @@ function editingP(editBtn, optionSetingsPost, textArea) {
             modalTitle.innerText = 'Editar Publicación';
             optionSetingsPost[i].style.display = 'none';
             console.log(post);
-            //console.log(doc.data());
         });
     }
     cerrarModalPost.addEventListener('click', () => {

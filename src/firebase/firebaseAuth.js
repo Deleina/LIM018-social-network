@@ -1,17 +1,22 @@
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged,
-  auth,
-  provider,
-} from './firebaseConfig.js';
+import { 
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signOut,
+    onAuthStateChanged, 
+    auth,
+    provider,
+    sendEmailVerification, 
+  } from './firebaseConfig.js';
+
 
 // FUNCIÓN REGISTER
 export const createUser = (email, password) => createUserWithEmailAndPassword(auth, email, password);
 
+//const provider = new GoogleAuthProvider();
+
+export const emailVefirication = () => sendEmailVerification(auth.currentUser)
 
 // FUNCIÓN LOGIN
 export const loginUser = (email, password) => signInWithEmailAndPassword(auth, email, password);
