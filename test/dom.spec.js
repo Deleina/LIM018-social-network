@@ -89,4 +89,4 @@ describe('Mostar y ocultar contraseña', () => {
 //         expect(document.getElementById('passwordLogin').value).toBe('*contraseña');
 //         console.log(signInWithEmailAndPassword.mock);
 //     });
-// });
+// });*/

@@ -15,6 +15,7 @@ import {
 // Initialize firestore
 const db = getFirestore(app);
 
+
 // Base de datos de registro de usuarios
 export const createUserRegisterDB = (uid, name, email, password) => {
     setDoc(doc(db, 'users', uid), {
