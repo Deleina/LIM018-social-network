@@ -154,7 +154,13 @@ export const postHome = (idPost, formPost, idBtnModalPost, idBackgroundModal, id
     const PostH = document.getElementById(formPost);
     PostH.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const fecha = new Date().toDateString();
+        const fechaPost = formatoFecha();
+        //const fecha = new Date();
+        const fecha = Date.now();
+
+        console.log(fechaPost);
+        console.log(fecha);
+
         const fileImage = btnImgFile;
         console.log(fileImage);
         const newpost = document.getElementById(idPost).value;
@@ -174,7 +180,7 @@ export const postHome = (idPost, formPost, idBtnModalPost, idBackgroundModal, id
             else {
                 textEmptyModal.innerHTML = '';
                 console.log(imagen);
-                savePost(nameUser, fecha, newpost, uid, like, imagen);
+                savePost(nameUser, fecha, fechaPost, newpost, uid, like, imagen);
                 
                 backgroundModal.style.display = 'none';
             }
@@ -225,7 +231,7 @@ export const getP = async (idpostContainer, idAddPost,) => {
                         <label class="editBtn editBtnStyle" data-id="${doc.id}">Editar</label>
                         <label class="deleteBtn deleteBtnStyle" data-id="${doc.id}">Eliminar</label>
                 </div>
-                <label class="date">${dataNewPost.fecha}</label>
+                <label class="date">${dataNewPost.fechaPost}</label>
                 <label class="postDescription">
                     ${dataNewPost.newpost}
                 </label> 
@@ -256,7 +262,7 @@ export const getP = async (idpostContainer, idAddPost,) => {
                         <label class="editBtn editBtnStyle" data-id="${doc.id}">Editar</label>
                         <label class="deleteBtn deleteBtnStyle" data-id="${doc.id}">Eliminar</label>
                 </div>
-                <label class="date">${dataNewPost.fecha}</label>
+                <label class="date">${dataNewPost.fechaPost}</label>
                 <label class="postDescription">
                     ${dataNewPost.newpost}
                 </label>
@@ -393,4 +399,29 @@ function editingP(editBtn, optionSetingsPost, textArea) {
         backgroundModal.style.display = 'none';
         textArea.innerHTML = '';
     })
+}
+
+function formatoFecha(){
+const f = new Date();
+const meses = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
+  const mes = meses[f.getMonth()]
+  const dia = f.getDate();
+  const año = f.getFullYear();
+  const hora = f.toLocaleTimeString();
+
+  const fechaPost =  `${ dia } de ${ mes } de ${ año } a las ${ hora }`
+  return fechaPost;
 }

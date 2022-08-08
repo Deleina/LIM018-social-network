@@ -25,12 +25,13 @@ export const createUserRegisterDB = (uid, name, email, password) => {
     });
 };
 
-export const savePost = async (nameUser, fecha, newpost, uid, like, image) => {
+export const savePost = async (nameUser, fecha, fechaPost, newpost, uid, like, image) => {
     try {
         if (image) {
             const cratePost = await addDoc(collection(db, 'posts'), {
                 nameUser,
                 fecha,
+                fechaPost,
                 newpost,
                 uid,
                 like,
@@ -40,6 +41,7 @@ export const savePost = async (nameUser, fecha, newpost, uid, like, image) => {
             const cratePost = await addDoc(collection(db, 'posts'), {
                 nameUser,
                 fecha,
+                fechaPost,
                 newpost,
                 uid,
                 like,
@@ -73,6 +75,7 @@ export const getUserById = (userId, colection) => {
 export const onGetPost = async (callback) => {
     const currentPost = await onSnapshot(collection(db, "posts"),
         (callback))
+        //.collection(db, "posts").orderBy("fecha", "desc")
 };
 
 export const deletePost = id => deleteDoc(doc(db, 'posts', id));
