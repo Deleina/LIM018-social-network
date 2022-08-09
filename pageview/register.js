@@ -1,5 +1,5 @@
-import { createUser, loginGoogle, emailVefirication } from '../firebase/firebaseAuth.js';
-import { createUserRegisterDB, getUserById } from '../firebase/baseDatos.js';
+import { createUser, loginGoogle, emailVefirication } from './firebase/firebaseAuth.js';
+import { createUserRegisterDB, getUserById } from './firebase/baseDatos.js';
 
 export default () => {
   const viewRegister = `<header class="nameLogo">

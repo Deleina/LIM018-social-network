@@ -1,4 +1,4 @@
-import { signOutUser } from '../firebase/firebaseAuth.js';
+import { signOutUser } from './firebase/firebaseAuth.js';
 import {
     savePost,
     getUser,

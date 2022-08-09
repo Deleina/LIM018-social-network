@@ -1,5 +1,5 @@
-import { loginGoogle, loginUser } from '../firebase/firebaseAuth.js';
-import { getUserById } from '../firebase/baseDatos.js';
+import { loginGoogle, loginUser } from './firebase/firebaseAuth.js';
+import { getUserById } from './firebase/baseDatos.js';
 
 export default () => {
   const viewLogin = `<header class="nameLogo">
