@@ -208,9 +208,8 @@ export const getP = async (idpostContainer, idAddPost,) => {
     const postContainer = document.getElementById(idpostContainer);
     onGetPost((dataPost) => {
        postContainer.innerHTML = '';
-       dataPost.forEach((doc) => {
+            dataPost.forEach((doc) => {
             const dataNewPost = doc.data();
-            // const dataUid = doc.data().uid;
             const like = dataNewPost.like;
             let ultimoLike = 0;
             if (like){

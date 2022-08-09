@@ -10,7 +10,9 @@ import {
     getDoc,
     updateDoc,
     app,
+    query, orderBy,
 } from './firebaseConfig.js';
+
 
 // Initialize firestore
 const db = getFirestore(app);
@@ -73,8 +75,9 @@ export const getUserById = (userId, colection) => {
 
 
 export const onGetPost = async (callback) => {
-    const currentPost = await onSnapshot(collection(db, "posts"),
+    const currentPost = await onSnapshot(query(collection(db, "posts"), orderBy("fecha", "desc")),
         (callback))
+        
         //.collection(db, "posts").orderBy("fecha", "desc")
 };
 
