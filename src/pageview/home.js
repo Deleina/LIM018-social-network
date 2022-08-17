@@ -1,4 +1,4 @@
-import { signOutUser } from '../firebase/firebaseAuth.js';
+import { signOutUser } from './firebase/firebaseAuth.js';
 import {
     savePost,
     getUser,
@@ -9,8 +9,8 @@ import {
     addLike,
     gettingPostLike,
 } from '../firebase/baseDatos.js';
-import { imageUrl } from '../firebase/storage.js';
-import { localStorageCall } from '../lib/index.js';
+import { imageUrl } from './firebase/storage.js';
+import { localStorageCall } from './lib/index.js';
 
 export default () => {
     const viewHome = `<section class= "sectionHome">
@@ -326,7 +326,7 @@ export const getP = async (idpostContainer, idAddPost,) => {
                 console.log(likeobject);
              });
 
-            function getKeyByValue(object, value) {
+            function getKeyByValue(object, value){
                 return Object.keys(object).find(key => object[key] === value);
             }
        }

@@ -12,9 +12,10 @@
   "scripts": {
     "htmlhint": "htmlhint dist/*.html ",
     "eslint": "eslint --ext .js src/ test/",
-    "stylelint": "stylelint --aei src/**/*.css", 
+    "stylelint": "stylelint --aei src/**/*.css",
     "test": "jest --coverage",
-    "start": "serve -s src/"
+    "start": "serve -s src/",
+    "deploy": "gh-pages -d src"
   },
   "devDependencies": {
     "@babel/core": "^7.11.4",
@@ -46,5 +47,9 @@
   "bugs": {
     "url": "https://github.com/Deleina/LIM018-social-network/issues"
   },
-  "homepage": "https://github.com/Deleina/LIM018-social-network#readme"
+  "homepage": "https://github.com/Deleina/LIM018-social-network#readme",
+  "dependencies": {
+    "deploy": "^1.0.3",
+    "gh-pages": "^4.0.0"
+  }
 }

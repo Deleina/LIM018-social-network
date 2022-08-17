@@ -1,8 +1,8 @@
-import { components } from '../pageview/viewlist.js';
-import { buttonShow, loginActive, GoogleBtnActive } from '../pageview/login.js';
-import { registerActive, buttonShowRegister } from '../pageview/register.js';
-import { SignOutActive, postHome, getP} from '../pageview/home.js';
-import { auth } from '../firebase/firebaseConfig.js';
+import { components } from './pageview/viewlist.js';
+import { buttonShow, loginActive, GoogleBtnActive } from './pageview/login.js';
+import { registerActive, buttonShowRegister } from './pageview/register.js';
+import { SignOutActive, postHome, getP} from './pageview/home.js';
+import { auth } from './firebase/firebaseConfig.js';
 
 const changeView = async (name) => {
   const container = document.getElementById('container');
@@ -30,7 +30,6 @@ const changeView = async (name) => {
       }
 
     case '#/home':
-//       if (user) {
         {
           container.appendChild(components.home());
           SignOutActive('signOut');
@@ -40,10 +39,6 @@ const changeView = async (name) => {
         }
         break;
       }
-
-/*     default:
-      break;
-  } */
 };
 
 export { changeView };
