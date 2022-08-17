@@ -30,15 +30,18 @@ const changeView = async (name) => {
       }
 
     case '#/home':
+       if (user) {
         {
           container.appendChild(components.home());
           SignOutActive('signOut');
           postHome('addPost', 'formPost', 'btnModalPost', 'backgroundModal', 'cerrarModalPost', 'btnPost', 'modalTitle', 'textEmptyModal', 'btnImgFile');
-
           await getP('postContainer', 'addPost');
         }
         break;
       }
+    default:
+      break;
+  }
 };
 
 export { changeView };
